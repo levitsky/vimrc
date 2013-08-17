@@ -145,3 +145,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 highlight OverLength ctermfg=yellow
 match OverLength /\%81v.\+/
 2match SpellRare /\s\+$/
+
+" Always view diffs with vertical splits
+let &diffopt = &diffopt . ',vertical'
+" Load Pathogen
+execute pathogen#infect()
