@@ -98,6 +98,9 @@ if has('mouse')
   set mouse=a
 endif
 
+highlight OverLength ctermfg=yellow
+let disable_overlength = ['xml', 'html']
+
 if has("autocmd")
 
   " Enable file type detection.
@@ -129,6 +132,8 @@ if has("autocmd")
       au!
       autocmd BufReadCmd *.doc execute "normal! :read !antiword %\<cr>:echo \"Converted with antiword\"\<cr>"
       autocmd FileType text :iabbrev <buffer> -- –
+      match OverLength /\%81v.\+/
+      autocmd FileType xml match none
   augroup END
 
 else
@@ -142,8 +147,7 @@ nnoremap <leader>ev :split $MYVIMRC<cr>G
 " source my vimrc file
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-highlight OverLength ctermfg=yellow
-match OverLength /\%81v.\+/
+"highlight trailing whitespace
 2match SpellRare /\s\+$/
 
 " Always view diffs with vertical splits
